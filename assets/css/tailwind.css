@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom styles here */
+body {
+  @apply bg-gray-50;
+}
+
+@layer components {
+  .card {
+    @apply p-3 rounded-md bg-white shadow-md h-full;
+  }
+  .btn,
+  .cart {
+    @apply px-3 py-2 rounded-md text-sm;
+  }
+  .btn {
+    @apply bg-[#12b488]  text-white;
+  }
+  .cart {
+    @apply border-2 border-[#12b488] cursor-pointer text-gray-500;
+  }
+}
