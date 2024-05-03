@@ -9,7 +9,7 @@ body {
 
 @layer components {
   .card {
-    @apply p-3 rounded-md bg-white shadow-md h-full;
+    @apply p-3 rounded-md bg-white shadow-md h-full flex flex-col justify-end;
   }
   .btn,
   .cart {
@@ -19,6 +19,6 @@ body {
     @apply bg-[#12b488]  text-white;
   }
   .cart {
-    @apply border-2 border-[#12b488] cursor-pointer text-gray-500;
+    @apply border border-[#12b488] cursor-pointer text-gray-500;
   }
 }

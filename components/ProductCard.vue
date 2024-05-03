@@ -2,22 +2,16 @@
   <div class="card text-center">
     <img :src="product.image" class="thumb" :alt="product.title" />
     <p class="font-bold text-gray-500 m-4 truncate">{{ product.title }}</p>
-    <div class="grid grid-cols-2 gap-8">
+    <div class="flex justify-center">
       <NuxtLink :to="`/products/${product.id}`">
-        <p class="btn my-4">View Details</p>
+        <button class="button">View Details</button>
       </NuxtLink>
-      <p class="cart my-4" @click="clicked">Add to Cart</p>
     </div>
   </div>
 </template>
 
 <script setup>
 const { product } = defineProps(["product"]);
-const emit = defineEmits(["add-to-cart"]);
-
-const clicked = () => {
-  emit("add-to-cart", product);
-};
 </script>
 
 <style scoped>
@@ -26,4 +20,47 @@ const clicked = () => {
   max-width: 70%;
   margin: 0 auto;
 }
+
+.button {
+  padding: 1em 2em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #12b488;
+  transition: all 1000ms;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #12b488;
+}
+
+button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid #12b488;
+  box-shadow: 4px 5px 17px -4px #12b488;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #12b488;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+button:hover::before {
+  width: 250%;
+}
+
+/* css media query */
+
 </style>
