@@ -3,7 +3,7 @@
     <header class="shadow-sm bg-white">
       <nav class="container mx-auto p-4 flex justify-between items-center">
         <NuxtLink to="/products" class="font-bold">Nuxt Dojo Merch</NuxtLink>
-        <NuxtLink to="#">
+        <NuxtLink to="/cart">
           <div class="relative scale-75">
             <svg
               xmlns="http://www.w3.org/2000/svg"
