@@ -114,8 +114,9 @@ definePageMeta({
   .button {
     width: 90%;
   }
-  .justify-end {
-    justify-content: center;
+  .justify-between {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 </style>

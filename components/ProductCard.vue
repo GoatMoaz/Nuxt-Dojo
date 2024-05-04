@@ -19,8 +19,12 @@ const { product } = defineProps(["product"]);
   max-height: 120px;
   max-width: 70%;
   margin: 0 auto;
+  transition: all 0.6s;
 }
 
+.thumb:hover {
+  transform: scale(1.2);
+}
 .button {
   padding: 1em 2em;
   border: none;
@@ -30,7 +34,7 @@ const { product } = defineProps(["product"]);
   text-transform: uppercase;
   cursor: pointer;
   color: #12b488;
-  transition: all 1000ms;
+  transition: all 0.6s;
   font-size: 12px;
   position: relative;
   overflow: hidden;
@@ -60,7 +64,4 @@ button::before {
 button:hover::before {
   width: 250%;
 }
-
-/* css media query */
-
 </style>
