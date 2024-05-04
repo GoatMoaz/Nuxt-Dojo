@@ -6,7 +6,7 @@
         <CartDetails :product="product"  />
       </div>
       <div class="my-4 flex justify-between mx-8" >
-        <!-- <h2 class="text-2xl font-bold">Total Price : ${{ totalPrice }}</h2> -->
+        <h2 class="text-2xl font-bold">Total Price : ${{ totalPrice }}</h2>
         <button class="button">
           Checkout
           <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
@@ -30,8 +30,9 @@
 <script setup>
 import eventBus from "~/eventBus.js";
 
-// const totalPrice = ref(0);
+const totalPrice = computed(() => eventBus.totalPrice);
 const cart = computed(() => eventBus.cart);
+
 definePageMeta({
   layout: "",
 });
