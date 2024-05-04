@@ -26,7 +26,7 @@
     </div>
     <div class="place-self-center start">
       <h2 class="font-bold text-2xl">
-        Price - ${{ product.price * product.quantity }}
+        Price - ${{ (product.price * product.quantity).toFixed(2) }}
       </h2>
       <button
         @click="handleRemove"

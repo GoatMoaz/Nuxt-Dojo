@@ -57,7 +57,7 @@ export default readonly({
   },
   get totalPrice() {
     cartTotalPrice();
-    return state.totalPrice;
+    return state.totalPrice.toFixed(2);
   },
   addToCart,
   increaseProductQuantity,
