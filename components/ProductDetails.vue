@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :class="{ dark: isDark }">
     <div class="grid grid-cols-2 gap-10">
       <div class="p-7">
         <img :src="product.image" class="mx-auto my-7" :alt="product.title" />
@@ -19,8 +19,12 @@
 </template>
 
 <script setup>
+import useDarkMode from "~/useDarkMode.js";
+
+const isDark = computed(() => useDarkMode.isDark);
+
 const { product } = defineProps(["product"]);
-import eventBus from '~/eventBus.js';
+import eventBus from "~/eventBus.js";
 
 const add = () => {
   eventBus.addToCart(product);

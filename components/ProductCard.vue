@@ -1,7 +1,15 @@
 <template>
-  <div class="card text-center">
+  <div
+    class="card text-center"
+    :class="{ 'bg-gray-800': isDark, 'bg-white': !isDark }"
+  >
     <img :src="product.image" class="thumb" :alt="product.title" />
-    <p class="font-bold text-gray-500 m-4 truncate">{{ product.title }}</p>
+    <p
+      class="font-bold m-4 truncate"
+      :class="{ 'text-white': isDark, 'text-gray-500': !isDark }"
+    >
+      {{ product.title }}
+    </p>
     <div class="flex justify-center">
       <NuxtLink :to="`/products/${product.id}`">
         <button class="button">View Details</button>
@@ -11,6 +19,10 @@
 </template>
 
 <script setup>
+import useDarkMode from "~/useDarkMode.js";
+
+const isDark = computed(() => useDarkMode.isDark);
+
 const { product } = defineProps(["product"]);
 </script>
 
@@ -20,6 +32,7 @@ const { product } = defineProps(["product"]);
   max-width: 70%;
   margin: 0 auto;
   transition: all 0.6s;
+  border-radius: 10px;
 }
 
 .thumb:hover {

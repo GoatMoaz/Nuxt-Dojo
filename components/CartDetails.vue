@@ -1,17 +1,22 @@
 <template>
-  <div class="container grid grid-cols-3 border-b-2 pb-5">
+  <div
+    class="container grid grid-cols-3 border-b-2 pb-5"
+    :class="{ dark: isDark }"
+  >
     <div class="p-7 place-self-center">
       <img :src="product.image" class="my-7" :alt="product.title" />
       <div class="flex justify-center items-center gap-2">
         <button
-          class="w-8 h-8 bg-gray-200 rounded-md flex justify-center items-center"
+          class="w-8 h-8 rounded-md flex justify-center items-center"
+          :class="{ 'bg-gray-900': isDark, 'bg-gray-200': !isDark }"
           @click="handleMinus"
         >
           -
         </button>
         <span class="text-2xl">{{ product.quantity }}</span>
         <button
-          class="w-8 h-8 bg-gray-200 rounded-md flex justify-center items-center"
+          class="w-8 h-8 rounded-md flex justify-center items-center"
+          :class="{ 'bg-gray-900': isDark, 'bg-gray-200': !isDark }"
           @click="handlePlus"
         >
           +
@@ -56,6 +61,10 @@
 
 <script setup>
 import eventBus from "~/eventBus.js";
+import useDarkMode from "~/useDarkMode.js";
+
+const isDark = computed(() => useDarkMode.isDark);
+
 const { product } = defineProps(["product"]);
 const emit = defineEmits(["price"]);
 
@@ -70,7 +79,6 @@ const handleMinus = () => {
 const handleRemove = () => {
   eventBus.removeFromCart(product);
 };
-
 </script>
 
 <style scoped>

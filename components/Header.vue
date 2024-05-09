@@ -1,8 +1,11 @@
 <template>
   <div>
-    <header class="shadow-sm bg-white">
+    <header class="shadow-sm" :class="{ dark: isDark, 'bg-white': !isDark }">
       <nav class="container mx-auto p-4 flex justify-between items-center">
-        <NuxtLink to="/products" class="font-bold">Nuxt Dojo Merch</NuxtLink>
+        <div class="flex items-center gap-4 justify-center">
+          <NuxtLink to="/products" class="font-bold">Nuxt Dojo Merch</NuxtLink>
+          <ToggleView />
+        </div>
         <NuxtLink to="/cart">
           <div class="relative scale-75">
             <svg
@@ -11,7 +14,8 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-8 w-8 text-gray-600"
+              class="h-8 w-8"
+              :class="{ 'text-white': isDark, 'text-gray-600': !isDark }"
             >
               <path
                 stroke-linecap="round"
@@ -20,7 +24,8 @@
               />
             </svg>
             <span
-              class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50" >{{ cartCount }}</span
+              class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50"
+              >{{ cartCount }}</span
             >
           </div>
         </NuxtLink>
@@ -30,7 +35,30 @@
 </template>
 
 <script setup>
-import eventBus from '~/eventBus.js';
+import eventBus from "~/eventBus.js";
+import useDarkMode from "~/useDarkMode.js";
+
+const isDark = computed(() => useDarkMode.isDark);
+
+watch(
+  isDark,
+  (value) => {
+    if (typeof document !== "undefined") {
+      if (value) {
+        document.body.classList.add("darkBody");
+      } else {
+        document.body.classList.remove("darkBody");
+      }
+    }
+  },
+  { immediate: true }
+);
+
+onBeforeUnmount(() => {
+  if (typeof document !== "undefined") {
+    document.body.classList.remove("dark");
+  }
+});
 
 const cartCount = computed(() => eventBus.cartCount);
 </script>
