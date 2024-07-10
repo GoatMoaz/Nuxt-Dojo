@@ -1,16 +1,11 @@
 <template>
   <div>
-    <Header />
-    <div
-      class="card container mx-auto my-4"
-      v-if="cart.length"
-      :class="{ dark: isDark }"
-    >
+    <div class="card container mx-auto my-4" v-if="cart.length">
       <div v-for="product in cart" :key="product.id">
         <CartDetails :product="product" />
       </div>
-      <div class="my-4 flex justify-between mx-8">
-        <h2 class="text-2xl font-bold">Total Price : ${{ totalPrice }}</h2>
+      <div class="my-4 flex flex-col justify-center items-center gap-2 md:items-start">
+        <h2 class="text-2xl font-bold text-center">Total Price : ${{ totalPrice }}</h2>
         <button class="button">
           Checkout
           <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
@@ -26,23 +21,14 @@
     <div v-else>
       <h2 class="text-2xl font-bold text-center my-8">No items in the cart</h2>
     </div>
-
-    <Footer />
   </div>
 </template>
 
 <script setup>
 import eventBus from "~/eventBus.js";
-import useDarkMode from "~/useDarkMode.js";
-
-const isDark = computed(() => useDarkMode.isDark);
 
 const totalPrice = computed(() => eventBus.totalPrice);
 const cart = computed(() => eventBus.cart);
-
-definePageMeta({
-  layout: "",
-});
 </script>
 
 <style scoped>

@@ -21,14 +21,4 @@ body {
   .cart {
     @apply border border-[#12b488] cursor-pointer text-gray-500;
   }
-  .dark,
-  .darkBody {
-    @apply text-white;
-  }
-  .dark {
-    @apply bg-gray-800;
-  }
-  .darkBody {
-    @apply bg-gray-900;
-  }
 }

@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="card text-center"
-    :class="{ 'bg-gray-800': isDark, 'bg-white': !isDark }"
-  >
+  <div class="card text-center">
     <img :src="product.image" class="thumb" :alt="product.title" />
-    <p
-      class="font-bold m-4 truncate"
-      :class="{ 'text-white': isDark, 'text-gray-500': !isDark }"
-    >
+    <p class="font-bold m-4 truncate">
       {{ product.title }}
     </p>
     <div class="flex justify-center">
@@ -19,10 +13,6 @@
 </template>
 
 <script setup>
-import useDarkMode from "~/useDarkMode.js";
-
-const isDark = computed(() => useDarkMode.isDark);
-
 const { product } = defineProps(["product"]);
 </script>
 

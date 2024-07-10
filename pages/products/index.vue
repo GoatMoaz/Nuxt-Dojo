@@ -1,22 +1,16 @@
 <template>
-  <div>
-    <Header />
-    <div class="container mx-auto p-4">
+  <div class="bg-slate-100">
+    <div class="container mx-auto p-4 ">
       <div class="grid grid-cols-4 gap-5">
         <div v-for="product in products" :key="product.id">
           <ProductCard :product="product" />
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script setup>
-definePageMeta({
-  layout: "",
-});
-
 // fetch the products from the API
 const { data: products } = await useFetch("https://fakestoreapi.com/products");
 useHead({

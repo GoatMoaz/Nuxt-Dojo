@@ -11,10 +11,7 @@
     </p>
   </div>
 </template>
-  
-<script setup>
-</script>
-  
+
 <style scoped>
 h2 {
   margin-bottom: 20px;

@@ -1,12 +1,12 @@
 <template>
-  <div class="card" :class="{ dark: isDark }">
-    <div class="grid grid-cols-2 gap-10">
+  <div class="card">
+    <div class="grid grid-cols-1 gap-0 lg:grid-cols-2 lg:gap-10">
       <div class="p-7">
-        <img :src="product.image" class="mx-auto my-7" :alt="product.title" />
+        <img :src="product.image" class="mx-auto my-7 w-10/12 md:w-full " :alt="product.title" />
       </div>
       <div class="p-7">
-        <h2 class="text-4xl my-7">{{ product.title }}</h2>
-        <p class="text-xl my-7">Price - ${{ product.price }}</p>
+        <h2 class="text-2xl text-center md:text-4xl lg:text-left">{{ product.title }}</h2>
+        <p class="text-xl my-7 text-center lg:text-left">Price - ${{ product.price }}</p>
         <h3 class="font-bold border-b-2 mb-4 pb-2">Product Description:</h3>
         <p class="mb-7">{{ product.description }}</p>
         <button class="button flex" @click="add">
@@ -19,9 +19,6 @@
 </template>
 
 <script setup>
-import useDarkMode from "~/useDarkMode.js";
-
-const isDark = computed(() => useDarkMode.isDark);
 
 const { product } = defineProps(["product"]);
 import eventBus from "~/eventBus.js";
@@ -89,31 +86,5 @@ img {
 
 .button:active {
   filter: brightness(0.8);
-}
-/* css media query */
-@media (max-width: 1024px) {
-  img {
-    max-width: 340px;
-  }
-}
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 3px;
-  }
-  h2 {
-    font-size: 2rem;
-  }
-}
-@media (max-width: 640px) {
-  img {
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  img {
-    max-width: 200px;
-  }
 }
 </style>

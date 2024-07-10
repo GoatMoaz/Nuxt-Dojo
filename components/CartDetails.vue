@@ -1,14 +1,10 @@
 <template>
-  <div
-    class="container grid grid-cols-3 border-b-2 pb-5"
-    :class="{ dark: isDark }"
-  >
+  <div class="container grid grid-cols-1 border-b-2 pb-5 md:grid-cols-2 lg:grid-cols-3">
     <div class="p-7 place-self-center">
       <img :src="product.image" class="my-7" :alt="product.title" />
       <div class="flex justify-center items-center gap-2">
         <button
           class="w-8 h-8 rounded-md flex justify-center items-center"
-          :class="{ 'bg-gray-900': isDark, 'bg-gray-200': !isDark }"
           @click="handleMinus"
         >
           -
@@ -16,7 +12,6 @@
         <span class="text-2xl">{{ product.quantity }}</span>
         <button
           class="w-8 h-8 rounded-md flex justify-center items-center"
-          :class="{ 'bg-gray-900': isDark, 'bg-gray-200': !isDark }"
           @click="handlePlus"
         >
           +
@@ -25,17 +20,17 @@
     </div>
 
     <div>
-      <h2 class="font-bold text-2xl my-7">{{ product.title }}</h2>
-      <h3 class="font-bold border-b-2 mb-4 pb-2">Product Description:</h3>
-      <p class="mb-7">{{ product.description }}</p>
+      <h2 class="font-bold text-2xl text-center md:text-left my-7">{{ product.title }}</h2>
+      <h3 class="font-bold border-b-2 mb-4 pb-2 px-4">Product Description:</h3>
+      <p class="mb-7 px-4">{{ product.description }}</p>
     </div>
-    <div class="place-self-center start">
+    <div class="place-self-start px-4 lg:place-self-center">
       <h2 class="font-bold text-2xl">
         Price - ${{ (product.price * product.quantity).toFixed(2) }}
       </h2>
       <button
         @click="handleRemove"
-        class="flex justify-center items-center gap-2 w-28 h-12 my-4 cursor-pointer rounded-md shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
+        class="flex justify-center items-center gap-2 w-28 h-12 my-2 cursor-pointer rounded-md shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
       >
         <svg viewBox="0 0 15 15" class="w-5 fill-white">
           <svg
@@ -61,9 +56,6 @@
 
 <script setup>
 import eventBus from "~/eventBus.js";
-import useDarkMode from "~/useDarkMode.js";
-
-const isDark = computed(() => useDarkMode.isDark);
 
 const { product } = defineProps(["product"]);
 const emit = defineEmits(["price"]);
@@ -85,15 +77,5 @@ const handleRemove = () => {
 img {
   max-width: 200px;
   max-height: 200px;
-}
-
-/* media query */
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-  .start {
-    place-self: start;
-  }
 }
 </style>

@@ -1,56 +1,92 @@
 <template>
-  <div>
-    <header class="shadow-sm" :class="{ dark: isDark, 'bg-white': !isDark }">
-      <nav class="container mx-auto p-4 flex justify-between items-center">
-        <div class="flex items-center gap-4 justify-center">
-          <NuxtLink to="/" class="font-bold">Nuxt Dojo</NuxtLink>
-          <ToggleView />
+  <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <DisclosureButton
+            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          >
+            <span class="absolute -inset-0.5" />
+            <span class="sr-only">Open main menu</span>
+            <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
+            <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
+          </DisclosureButton>
         </div>
-        <ul class="flex gap-4">
-          <li>
-            <NuxtLink to="/">Home</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/about">About</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/products" class="btn">Products</NuxtLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div class="container mx-auto p-4">
-      <slot />
+        <div
+          class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+        >
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4 items-center justify-center">
+              <NuxtLink
+                v-for="item in navigation"
+                :key="item.name"
+                :to="item.href"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                :aria-current="item.current ? 'page' : undefined"
+                >{{ item.name }}</NuxtLink
+              >
+              <NuxtLink
+                to="/cart"
+                class="flex rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                <IconsCart />
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+        >
+          <h1 class="text-white text-2xl font-bold">Nuxt Dojo Merch</h1>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <DisclosurePanel class="sm:hidden">
+      <div class="space-y-1 px-2 pb-3 pt-2">
+        <NuxtLink
+          v-for="item in navigation"
+          :key="item.name"
+          :to="item.href"
+          class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+          :aria-current="item.current ? 'page' : undefined"
+          >{{ item.name }}</NuxtLink
+        >
+        <NuxtLink
+          to="/cart"
+          class="flex rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+        >
+          <IconsCart />
+        </NuxtLink>
+      </div>
+    </DisclosurePanel>
+  </Disclosure>
+  <slot />
 </template>
+
 <script setup>
-import useDarkMode from "~/useDarkMode.js";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from "@headlessui/vue";
+import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
-const isDark = computed(() => useDarkMode.isDark);
-
-watch(
-  isDark,
-  (value) => {
-    if (typeof document !== "undefined") {
-      if (value) {
-        document.body.classList.add("darkBody");
-      } else {
-        document.body.classList.remove("darkBody");
-      }
-    }
-  },
-  { immediate: true }
-);
-
-onBeforeUnmount(() => {
-  if (typeof document !== "undefined") {
-    document.body.classList.remove("dark");
-  }
-});
+const navigation = [
+  { name: "Home", href: "/", current: true },
+  { name: "Shop", href: "/products", current: false },
+  { name: "About us", href: "/about", current: false },
+];
 </script>
+
 <style scoped>
 .router-link-exact-active {
-  color: #12b488;
+  background-color: #1a202c;
+  color: #ffffff;
 }
 </style>
