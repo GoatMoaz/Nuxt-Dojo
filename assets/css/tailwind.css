@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 /* Your custom styles here */
+html{
+  height: 100%;
+
+}
 body {
-  @apply bg-gray-50;
+  @apply bg-gray-50 relative m-0 min-h-full pb-20 md:pb-24;
 }
 
 @layer components {

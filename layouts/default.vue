@@ -38,7 +38,13 @@
         <div
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
-          <h1 class="text-white text-2xl font-bold">Nuxt Dojo Merch</h1>
+          <NuxtLink to="/" style="background-color: transparent">
+            <img
+              src="assets/images/logo.svg"
+              alt="logo"
+              class="w-16 md:w-20 cursor-pointer"
+            />
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -63,6 +69,13 @@
     </DisclosurePanel>
   </Disclosure>
   <slot />
+  <footer class="bg-gray-900 text-slate-100 py-8 px-4 xs:py-10 absolute right-0 left-0 bottom-0">
+    <p class="text-center">
+      <a href="https://github.com/GoatMoaz/Nuxt-Dojo" target="_blank">
+        &copy; 2024 Nuxt Dojo Merch.
+      </a>
+    </p>
+  </footer>
 </template>
 
 <script setup>

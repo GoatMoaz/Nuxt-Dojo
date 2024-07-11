@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
+  ssr: false,
   app:{
     head:{
       title: 'Nuxt Dojo',

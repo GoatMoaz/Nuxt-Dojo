@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white min-h-screen relative">
+  <div class="bg-white min-h-screen">
     <section
-      class="container mx-auto py-12 px-6 xs:py-16 xs:px-8 text-gray-900 flex flex-col justify-between items-center md:flex-row"
+      class="flex items-start md:items-center h-screen bg-hero-pattern bg-cover bg-right-bottom md:bg-bottom bg-no-repeat bg-scroll md:bg-fixed py-16 px-4 md:px-12 text-[#27272b]"
     >
       <div class="w-full md:w-1/2">
         <h1
-          class="text-4xl font-bold mb-4 text-center md:text-left md:text-5xl"
+          class="font-bold mb-4 text-center md:text-left lg:text-5xl md:text-4xl text-3xl"
         >
           Nuxt Dojo Merch
         </h1>
@@ -22,44 +22,117 @@
           </NuxtLink>
         </div>
       </div>
-
-      <div class="flex justify-center md:justify-start">
-        <img
-          :src="product[0].image"
-          class="max-w-72 2xs:max-w-xs md:max-w-sm"
-        />
-      </div>
     </section>
+
     <section class="py-8 xs:py-16">
       <div class="container mx-auto px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold">Crafted with excellent material.</h2>
+        <div class="text-center mb-20">
+          <h2 class="text-3xl font-bold">Our Latest Products</h2>
           <p class="text-gray-600 mt-4">
-            Indulge in quality craftsmanship with premium materials for lasting
-            beauty and durability.
+            Discover our latest products that are designed to inspire and
+            delight.
           </p>
         </div>
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-0">
-          <div class="flex flex-col justify-center items-center">
-            <img :src="product[1].image" class="mb-4 max-w-48" />
-            <h3 class="font-semibold">Mens Casual Premium Slim</h3>
-            <p>${{ product[1].price }}</p>
+        <div class="grid grid-cols-1 gap-20 md:grid-cols-3 md:gap-4">
+          <div
+            class="card flex flex-col justify-center items-center border border-black shadow-xl"
+          >
+            <NuxtLink to="/products/2">
+              <img
+                :src="product[1].image"
+                class="cursor-pointer mb-4 max-w-48 -mt-20 transform transition-all duration-500 hover:scale-110"
+              />
+              <h3 class="font-semibold">Mens Casual Premium Slim</h3>
+            </NuxtLink>
           </div>
-          <div class="flex flex-col justify-center items-center">
-            <img :src="product[3].image" class="mb-4 max-w-48" />
-            <h3 class="font-semibold">{{ product[3].title }}</h3>
-            <p>${{ product[3].price }}</p>
+          <div
+            class="card flex flex-col justify-center items-center border border-black shadow-xl"
+          >
+            <NuxtLink to="/products/4">
+              <img
+                :src="product[3].image"
+                class="cursor-pointer mb-4 max-w-48 -mt-16 transform transition-all duration-500 hover:scale-110"
+              />
+              <h3 class="font-semibold">{{ product[3].title }}</h3>
+            </NuxtLink>
           </div>
-          <div class="flex flex-col justify-center items-center">
-            <img :src="product[14].image" class="mb-4 max-w-48" />
-            <h3 class="font-semibold truncate">
-              Women's 3-in-1 Snowboard Jacket
-            </h3>
-            <p>${{ product[14].price }}</p>
+          <div
+            class="card flex flex-col justify-center items-center border border-black shadow-xl"
+          >
+            <NuxtLink to="/products/15">
+              <img
+                :src="product[14].image"
+                class="cursor-pointer mb-4 max-w-48 -mt-20 transform transition-all duration-500 hover:scale-110"
+              />
+              <h3 class="font-semibold truncate">Women's Snowboard Jacket</h3>
+            </NuxtLink>
           </div>
         </div>
       </div>
     </section>
+
+    <section class="bg-gray-100 py-8 xs:py-16">
+      <div class="container mx-auto px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-3xl font-bold">Our Best Sellers</h2>
+          <p class="text-gray-600 mt-4">
+            Check out our best-selling products that are loved by our customers.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-20 md:grid-cols-3 md:gap-4">
+          <BestProduct :product="product[5]" />
+          <BestProduct :product="product[6]" />
+          <BestProduct :product="product[7]" />
+        </div>
+      </div>
+    </section>
+
+    <!-- our services -->
+    <section class="py-8 xs:py-16 bg-gray-200">
+      <div class="container mx-auto px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-3xl font-bold">Our Services</h2>
+          <p class="text-gray-600 mt-4">
+            We offer a range of services to help you get the most out of your
+            shopping experience.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-20 md:grid-cols-3 md:gap-4">
+          <div
+            class="card flex flex-col justify-center items-center bg-gray-800 text-slate-100"
+          >
+            <img src="assets/images/free-shipping.png" class="mb-4 max-h-48" />
+            <h3 class="font-semibold">Free Shipping</h3>
+            <p class="text-slate-300 text-center mt-4">
+              We offer free shipping on all orders over $50.
+            </p>
+          </div>
+          <div
+            class="card flex flex-col justify-center items-center bg-gray-800 text-slate-100"
+          >
+            <img src="assets/images/secure-payment.png" class="mb-4 max-h-48" />
+            <h3 class="font-semibold">Secure Payment</h3>
+            <p class="text-slate-300 text-center mt-4">
+              We use secure payment methods to protect your personal
+              information.
+            </p>
+          </div>
+          <div
+            class="card flex flex-col justify-center items-center bg-gray-800 text-slate-100"
+          >
+            <img
+              src="assets/images/quality-product.png"
+              class="mb-4 max-h-48"
+            />
+            <h3 class="font-semibold">Quality Products</h3>
+            <p class="text-slate-300 text-center mt-4">
+              We only sell high-quality products that are built to last.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </template>
 <script setup>
@@ -112,7 +185,7 @@ const { data: product } = await useFetch("https://fakestoreapi.com/products");
 
 .button:hover {
   color: #ffffff;
-  border: 1px solid #39bda7;
+  border: 1px solid rgb(234, 179, 8);
 }
 
 .button:hover:before {

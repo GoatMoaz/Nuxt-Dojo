@@ -26,7 +26,7 @@ const { product } = defineProps(["product"]);
 }
 
 .thumb:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 .button {
   padding: 1em 2em;
